@@ -3,6 +3,7 @@ import ErrorMessage from '../components/ErrorMessage'
 import Spinner from '../components/Spinner'
 import List from '../components/List'
 import useAxiosOnMount from '../customHooks/useAxiosOnMount'
+import { Link } from 'react-router-dom'
 
 const Users = ()=>{
     // about the useState hook
@@ -16,9 +17,9 @@ const Users = ()=>{
             <List 
                renderData={(user)=>{
                    return(
-                   <div>
+                   <Link to={`/users/${user.id}`}>
                        <h1>{user.name}</h1>
-                   </div>
+                   </Link>
                    )
                }}
                data={data} 

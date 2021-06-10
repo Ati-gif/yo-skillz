@@ -1,24 +1,25 @@
 import React from 'react'
 import ErrorMessage from '../components/ErrorMessage'
-import FormattedMessage from '../components/FormattedMessage'
 import Spinner from '../components/Spinner'
-import StringifyJSON from '../components/StringifyJSON'
+import List from '../components/List'
 import useAxiosOnMount from '../customHooks/useAxiosOnMount'
+import Skill from './Skill'
 
-const Things = () => {
+const Skills = ()=>{
     // about the useState hook
-     const {data,loading,error} = useAxiosOnMount('/api/things')
+    const {data,loading,error} = useAxiosOnMount('/api/skills')
     // const {data,loading,error} = useAxiosOnMount('https://rasdfeqres.in/api/users?delay=3')
 
     if(loading) return <Spinner />
     if(error) return <ErrorMessage error={error}/>
     return (
         <div>
-            <h1>Things</h1>
-            <StringifyJSON json={data} />
+            <List 
+               renderData={(skill) => <Skill {...skill}/>}
+               data={data} 
+               name='Skills'/>
         </div>
     )
-} 
+}
 
-export default Things
-
+export default Skills
